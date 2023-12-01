@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<h1>Welcome, @User.Identity.Name</h1>
+<div class="container text-center">
+    <div class="row d-flex justify-content-between my-5">
+        <div class="col-lg-3 col-sm-6 p-5 border">
+            <a asp-area="" asp-controller="Workout" asp-action="NewWorkout">
+                <button class="btn btn-primary">NEW WORKOUT</button>
+            </a>
+        </div>
+        <div class="col-lg-3 col-sm-6 p-5 border">
+            <button class="btn btn-primary">TEMPLATES</button>
+        </div>
+        <div class="col-lg-3 col-sm-6 p-5 border">
+            <button class="btn btn-primary">STATS</button>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-between my-5">
+        <div class="col-lg-3 col-sm-6 p-5 border">
+            <button class="btn btn-primary">ACHIEVEMENTS</button>
+        </div>
+        <div class="col-lg-3 col-sm-6 p-5 border">
+            <button class="btn btn-primary">GOALS</button>
+        </div>
+        <div class="col-lg-3 col-sm-6 p-5 border">
+            <button class="btn btn-primary">ACCOUNT MANAGEMENT</button>
+        </div>
+    </div>
+</div>

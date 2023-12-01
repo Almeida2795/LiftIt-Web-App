@@ -1,0 +1,45 @@
+﻿@using WebAppLiftItt.ViewModels;
+@model RegisterVM
+
+@{
+	ViewData["Title"] = "Register";
+}
+
+<div class="container-fluid text-center mt-5">
+	<div class="row d-flex justify-content-center">
+		<div class="col-6">
+			<h1>Login</h1>
+			<form asp-action="Register" method="post">
+				<div asp-validation-summary="ModelOnly" ></div>
+				<div class="mb-1">
+					<label asp-for="Username" class="control-label"></label>
+					<input asp-for="Username" class="form-control" />
+					<span asp-validation-for="Username"></span>
+				</div>
+				<div class="mb-1">
+					<label asp-for="Email" class="control-label"></label>
+					<input asp-for="Email" class="form-control" />
+					<span asp-validation-for="Email"></span>
+				</div>
+				<div class="mb-1">
+					<label asp-for="Password" class="control-label"></label>
+					<input asp-for="Password" class="form-control" />
+					<span asp-validation-for="Password"></span>
+				</div>
+				<div class="mb-1">
+					<label asp-for="PasswordConfirmation" class="control-label"> Password Confirmation</label>
+					<input asp-for="PasswordConfirmation" class="form-control" />
+					<span asp-validation-for="PasswordConfirmation"></span>
+				</div>
+				<div class="row">
+					<div class="col-8">
+						<a asp-action="Login" class="text-decoration-none float-start mt-2">Already have an account?</a>
+					</div>
+					<div class="col-4">
+						<input type="submit" value="Register" class="btn btn-primary btn-sm float-end" />
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

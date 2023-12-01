@@ -1,0 +1,187 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Exercise
+@{
+}
+
+<h1>Let's Lift It, @User.Identity.Name</h1>
+<h2>Workout Name</h2>
+<input type="text" id="fname" name="fname" value="John">
+<br>
+<div class="container text-center">
+	@*EXERCISE SELECTION AREA*@
+	<div class="row d-flex justify-content-center mt-5">
+		<div class="col-5 mt-2">
+			<h2>Select an exercise</h2>
+			<select asp-for="Id" class="form-select" id="ExerciseID"
+					asp-items="@ViewBag.ExerciseNames"></select> <br />
+			<button class="btn btn-primary shadow-none mt-2">Add Exercise</button>
+		</div>
+		<div class="col-4 pt-4">
+			<div class="col-12">
+				<button class="btn btn-primary shadow-none mt-2 " onclick="deleteAndRefresh()">DELETE EXERCISE FROM LIST</button>
+				<button class="btn btn-primary shadow-none mt-2" data-bs-toggle="modal" data-bs-target="#createNewExercise">ADD EXERCISE TO LIST</button>
+				<button class="btn btn-primary shadow-none mt-2">EDIT EXERCISE FROM LIST</button>
+			</div>
+		</div>
+	</div>
+
+	@*EXERCISE SETS AREA*@
+	<div class="row d-flex justify-content-between my-5">
+		<div class="col-12 ">
+			<form>
+				<h2>EXERCISE NAME</h2>
+				<div class="row d-flex gy-5 mt-3 mb-5 overflow-hidden">
+					<div class="col-3">
+						<h3>SET</h3> 1
+						<div class="row d-flex">
+							<div class="col-6 ">
+								REPS
+								<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="25">
+							</div>
+							<div class="col-6 ">
+								WEIGHT
+								<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="25">
+							</div>
+							<button class="btn btn-primary shadow-none mt-5 mx-3">DELETE SET</button>
+						</div>
+					</div>
+					<div class="col-3 ">
+						<h3>SET</h3> 2
+						<div class="row d-flex">
+							<div class="col-6 ">
+								REPS
+								<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="25">
+							</div>
+							<div class="col-6 ">
+								WEIGHT
+								<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="25">
+							</div>
+							<button class="btn btn-primary shadow-none mt-5 mx-3">DELETE SET</button>
+						</div>
+					</div>
+					<div class="col-3 ">
+						<h3>SET</h3> 3
+						<div class="row d-flex">
+							<div class="col-6 ">
+								REPS
+								<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="25">
+							</div>
+							<div class="col-6 ">
+								WEIGHT
+								<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="25">
+							</div>
+							<button class="btn shadow-none btn-primary mt-5 mx-3">DELETE SET</button>
+						</div>
+					</div>
+					<div class="col-3 ">
+						<h3>SET</h3> 4
+						<div class="row d-flex">
+							<div class="col-6 ">
+								REPS
+								<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="25">
+							</div>
+							<div class="col-6 ">
+								WEIGHT
+								<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="25">
+							</div>
+							<button class="btn shadow-none btn-primary mt-5 mx-3">DELETE SET</button>
+						</div>
+					</div>
+				</div>
+
+			</form>
+			<button class="btn shadow-none btn-primary">ADD SET</button>
+			<button class="btn shadow-none btn-primary">DELETE EXERCISE</button>
+		</div>
+	</div>
+
+	<div class="row d-flex justify-content-center mt-5">
+		<div class="col-6">
+			<button class="btn shadow-none btn-primary mt-2">FINISH WORKOUT</button>
+			<button class="btn shadow-none btn-primary mt-2">CANCEL WORKOUT</button>
+		</div>
+	</div>
+</div>
+
+
+@*New exercise add Modal*@
+
+<div class="modal fade" role="dialog" tabindex="-1" id="createNewExercise" aria-labelledby="createNewExerciseLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>New Exercise</h3>
+			</div>
+			<div class="modal-body">
+				<form asp-controller="Workout" asp-action="CreateExercise" method="post">
+
+					<label asp-for="Name" class="control-label">Exercise Name</label>
+					<input asp-for="Name" class="form-control" />
+					<span asp-validation-for="Name" class="text-danger"></span>
+					<br />
+					<label asp-for="Type" class="control-label">Exercise Type</label>
+					<select asp-for="Type" id="Type" name="Type">
+						<option value=""></option>
+						<option value="Push">Push</option>
+						<option value="Pull">Pull</option>
+						<option value="Legs">Legs</option>
+						<option value="Cardio">Cardio</option>
+					</select>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+						<button type="submit" class="btn btn-primary">Add</button>
+
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+<script>
+	function deleteExercise() {
+		var exerciseId = $('#ExerciseID').val();
+
+		$.ajax({
+			type: "POST",
+			url: '@Url.Action("DeleteExercise", "Workout")',
+			data: {
+				ExerciseID: exerciseId
+			},
+			success: function (response) {
+				// This code runs if the deletion is successful
+				// Now, trigger the update to refresh the exercise list
+				updateExerciseList();
+			},
+			error: function (error) {
+				// Handle error if the deletion fails
+				console.log(error);
+			}
+		});
+	}
+
+	function updateExerciseList() {
+		$.ajax({
+			type: "POST",
+			url: '@Url.Action("UpdateExList", "Workout")',
+			success: function (response) {
+				// This code runs if the update is successful
+				// You might update the dropdown list or perform other actions here
+			},
+			error: function (error) {
+				// Handle error if the update fails
+				console.log(error);
+			}
+		});
+	}
+
+	function deleteAndRefresh() {
+		deleteExercise(); // Call the deleteExercise function
+		updateExerciseList(); // Call the updateExerciseList function
+	}
+</script>

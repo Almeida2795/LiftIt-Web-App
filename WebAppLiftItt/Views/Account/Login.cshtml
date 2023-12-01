@@ -1,0 +1,40 @@
+﻿@using WebAppLiftItt.ViewModels;
+@model LoginVM
+
+@{
+	ViewData["Title"] = "Login";
+}
+
+<div class="container-fluid text-center mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-6">
+            <h1>Login</h1>
+			<form asp-action="Login" method="post">
+				<div asp-validation-summary="ModelOnly"></div>
+				<div class="mb-1">
+					<label asp-for="Email" class="control-label"></label><br /><br />
+					<input asp-for="Email" class="form-control" />
+					<span asp-validation-for="Email"></span>
+				</div><br />
+				<div class="mb-1">
+					<label asp-for="Password" class="control-label"></label><br /><br />
+					<input asp-for="Password" class="form-control" />
+					<span asp-validation-for="Password"></span>
+				</div><br />
+				<div class="mb-1 form-check">
+					<label class="form-check-label">
+						<input asp-for="RememberMe" class="form-check-input" /> @Html.DisplayNameFor(a => a.RememberMe)
+					</label>
+				</div><br /><br />
+				<div class="row">
+					<div class="col-8">
+						<a asp-action="Register" class="text-decoration-none float-start mt-2">Don't have an account?</a>
+					</div><br /><br />
+					<div class="col-4">
+						<input type="submit" value="Login" class="btn btn-sm float-end" />
+					</div>
+				</div>
+			</form>
+        </div>
+    </div>
+</div>" 
