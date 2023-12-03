@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAppLiftItt.Data;
 
@@ -11,9 +12,11 @@ using WebAppLiftItt.Data;
 namespace WebAppLiftItt.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231202132519_fixed-Relationships-Between-Sets-n-WorkoutExercise")]
+    partial class fixedRelationshipsBetweenSetsnWorkoutExercise
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -257,9 +260,6 @@ namespace WebAppLiftItt.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("WorkoutExerciseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("setOrder")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

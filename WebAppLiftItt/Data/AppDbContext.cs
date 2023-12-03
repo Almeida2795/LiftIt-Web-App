@@ -42,7 +42,10 @@ namespace WebAppLiftItt.Data
                 .WithMany()
                 .HasForeignKey(we => we.ExerciseId);
 
-            modelBuilder.Entity<Sets>();
+            modelBuilder.Entity<Sets>()
+				 .HasOne(s => s.WorkoutExercise)
+		.WithMany(we => we.Sets)
+		.HasForeignKey(s => s.WorkoutExerciseId); ;
         }
     }
 }

@@ -14,5 +14,9 @@ namespace WebAppLiftItt.Models
 			[Required(ErrorMessage = "You must enter the amount of weight")]
 			[Range(0, 1000, ErrorMessage = "You must enter a value between 0 and 1000")]
 			public int Weight { get; set; }
-		}
+			public int WorkoutExerciseId { get; set; } // Foreign key to WorkoutExercise
+		[Required(ErrorMessage = "Something went wrong configuring your exercise")]
+		public int setOrder { get; set; }
+			public WorkoutExercise WorkoutExercise { get; set; } // Navigation property
+	}
 }

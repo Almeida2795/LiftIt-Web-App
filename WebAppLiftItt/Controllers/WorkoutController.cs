@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WebAppLiftItt.Data;
 using WebAppLiftItt.Models;
+using WebAppLiftItt.ViewModels;
 
 namespace WebAppLiftItt.Controllers
 {
@@ -32,6 +33,14 @@ namespace WebAppLiftItt.Controllers
 			return View();
 
 		}
+
+		[HttpPost]
+		public IActionResult AddSetPartialView()
+		{
+			AddSetViewModel model = new AddSetViewModel();
+			return PartialView("_AddSetPartial",model);
+		}
+
 
 		[HttpPost]
 		public IActionResult CreateExercise(Exercise exercise)

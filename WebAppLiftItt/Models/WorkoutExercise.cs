@@ -13,5 +13,6 @@ namespace WebAppLiftItt.Models
 
 			public int ExerciseId { get; set; }
 			public Exercise Exercise { get; set; }
-		}
+			public ICollection<Sets> Sets { get; set; }
+	}
 }

@@ -29,70 +29,31 @@
 
 	@*EXERCISE SETS AREA*@
 	<div class="row d-flex justify-content-between my-5">
+		<form>
 		<div class="col-12 ">
-			<form>
 				<h2>EXERCISE NAME</h2>
-				<div class="row d-flex gy-5 mt-3 mb-5 overflow-hidden">
-					<div class="col-3">
-						<h3>SET</h3> 1
-						<div class="row d-flex">
-							<div class="col-6 ">
-								REPS
-								<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="25">
+				<div class="row d-flex gy-5 mt-3 mb-5 overflow-hidden setsContainer">
+
+					@* <div class= "col-3 setsContainer">
+						<div class="setform">
+							<h3>SET</h3> 1
+							<di	v class="row d-flex">
+								<div class="col-6 ">
+									REPS
+									<input type="text" name="reps[]">
+								</div>
+								<div class="col-6 ">
+									WEIGHT
+									<input type="text" name="weight[]">
+								</div>
+								<button class="btn btn-primary shadow-none mt-5 mx-3">DELETE SET</button>
 							</div>
-							<div class="col-6 ">
-								WEIGHT
-								<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="25">
-							</div>
-							<button class="btn btn-primary shadow-none mt-5 mx-3">DELETE SET</button>
 						</div>
-					</div>
-					<div class="col-3 ">
-						<h3>SET</h3> 2
-						<div class="row d-flex">
-							<div class="col-6 ">
-								REPS
-								<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="25">
-							</div>
-							<div class="col-6 ">
-								WEIGHT
-								<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="25">
-							</div>
-							<button class="btn btn-primary shadow-none mt-5 mx-3">DELETE SET</button>
-						</div>
-					</div>
-					<div class="col-3 ">
-						<h3>SET</h3> 3
-						<div class="row d-flex">
-							<div class="col-6 ">
-								REPS
-								<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="25">
-							</div>
-							<div class="col-6 ">
-								WEIGHT
-								<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="25">
-							</div>
-							<button class="btn shadow-none btn-primary mt-5 mx-3">DELETE SET</button>
-						</div>
-					</div>
-					<div class="col-3 ">
-						<h3>SET</h3> 4
-						<div class="row d-flex">
-							<div class="col-6 ">
-								REPS
-								<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="25">
-							</div>
-							<div class="col-6 ">
-								WEIGHT
-								<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="25">
-							</div>
-							<button class="btn shadow-none btn-primary mt-5 mx-3">DELETE SET</button>
-						</div>
-					</div>
+					</div> *@
 				</div>
 
 			</form>
-			<button class="btn shadow-none btn-primary">ADD SET</button>
+			<button class="btn shadow-none btn-primary" id="addSet">ADD SET</button>
 			<button class="btn shadow-none btn-primary">DELETE EXERCISE</button>
 		</div>
 	</div>
@@ -144,7 +105,7 @@
 
 
 <script>
-	function deleteExercise() {
+function deleteExercise() {
 		var exerciseId = $('#ExerciseID').val();
 
 		$.ajax({
